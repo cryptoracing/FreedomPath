@@ -34,10 +34,10 @@ export const LogModal: React.FC<LogModalProps> = ({ onClose, onSave, language })
                 <button
                   key={tr}
                   onClick={() => setTrigger(tr)}
-                  className={`py-3 px-4 rounded-xl text-xs font-medium transition-all border ${
+                  className={`py-3 px-4 rounded-xl text-xs font-black transition-all border ${
                     trigger === tr 
-                    ? 'bg-indigo-600 border-indigo-600 text-white shadow-md' 
-                    : 'bg-white border-gray-200 text-gray-600 hover:border-indigo-200'
+                    ? 'bg-purple-600 border-purple-600 text-white shadow-md' 
+                    : 'bg-white border-gray-200 text-gray-600 hover:border-purple-200'
                   }`}
                 >
                   {tr}
@@ -51,13 +51,13 @@ export const LogModal: React.FC<LogModalProps> = ({ onClose, onSave, language })
               value={context}
               onChange={(e) => setContext(e.target.value)}
               placeholder={t.contextPlaceholder}
-              className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none h-20"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none h-20"
             />
           </div>
 
           <button
             onClick={() => onSave(trigger, context)}
-            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="w-full bg-purple-600 text-white py-4 rounded-xl font-black text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             <Check className="w-5 h-5" /> {t.confirmLog}
           </button>

@@ -19,6 +19,7 @@ export interface CigaretteLog {
 
 export interface UserSettings {
   language: Language;
+  currency: string;
   costPerPack: number;
   packSize: number;
   baselinePerDay: number;

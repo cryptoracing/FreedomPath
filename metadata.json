@@ -1,7 +1,5 @@
 {
   "name": "FreedomPath: Quit Smoking",
   "description": "A mindful, data-driven approach to quitting smoking by tracking triggers, eliminating 'double' cigarettes, and gradual reduction to a smoke-free life.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "requestFramePermissions": []
 }

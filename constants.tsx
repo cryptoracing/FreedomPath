@@ -3,6 +3,21 @@ import React from 'react';
 import { QuitPhase, Language } from './types';
 import { Activity, Target, Brain, Wind, CheckCircle } from 'lucide-react';
 
+export const CURRENCIES = [
+  { code: 'USD', symbol: '$' },
+  { code: 'RUB', symbol: '₽' },
+  { code: 'EUR', symbol: '€' },
+  { code: 'THB', symbol: '฿' },
+  { code: 'GBP', symbol: '£' },
+  { code: 'JPY', symbol: '¥' },
+  { code: 'CNY', symbol: '¥' },
+  { code: 'IDR', symbol: 'Rp' },
+  { code: 'TRY', symbol: '₺' },
+  { code: 'KRW', symbol: '₩' },
+  { code: 'INR', symbol: '₹' },
+  { code: 'BRL', symbol: 'R$' }
+];
+
 export const TRANSLATIONS: Record<Language, any> = {
   en: {
     appTitle: 'FreedomPath',
@@ -24,13 +39,25 @@ export const TRANSLATIONS: Record<Language, any> = {
     suggestedAction: 'Suggested Action',
     settings: 'Settings',
     language: 'Language',
+    currency: 'Currency',
     quitPhase: 'Current Phase',
-    currency: '$',
     breathingTitle: 'Focus on Breath',
     breathingSub: 'Inhale and exhale slowly...',
     breathingFinished: 'Great job! The craving will pass.',
     finish: 'Finish',
     nextPhase: 'Progress to next phase',
+    resetProgress: 'Reset Progress',
+    resetConfirm1: 'Are you sure?',
+    resetConfirm2: 'Are you REALLY sure? (All logs will be lost)',
+    guideTitle: 'How FreedomPath Works',
+    guideIntro: 'FreedomPath is not about "cold turkey" quitting. It is a data-driven path to freedom.',
+    guideSteps: [
+      { title: 'Track Baseline', text: 'First, we observe. Don\'t change habits, just log everything for 3 days.' },
+      { title: 'Identify Triggers', text: 'Awareness is 50% of the battle. We find out WHY you reach for a cigarette.' },
+      { title: 'Active Reduction', text: 'We start cutting the "easy" ones first, like doubles smoked in a row.' },
+      { title: 'The Four Rule', text: 'We stabilize at 4 cigarettes a day: Morning, Lunch, Dinner, Night.' },
+      { title: 'Freedom', text: 'When you are ready, you jump from 4 to 0. You have already won.' }
+    ],
     phaseConditions: {
       BASELINE: 'Log data for 3 days to start analysis.',
       TRIGGER_ID: 'Identify triggers for at least 10 cigarettes.',
@@ -59,13 +86,25 @@ export const TRANSLATIONS: Record<Language, any> = {
     suggestedAction: 'Рекомендация',
     settings: 'Настройки',
     language: 'Язык',
+    currency: 'Валюта',
     quitPhase: 'Текущая фаза',
-    currency: '₽',
     breathingTitle: 'Дышите глубоко',
     breathingSub: 'Медленный вдох и выдох...',
     breathingFinished: 'Отлично! Тяга скоро пройдет.',
     finish: 'Завершить',
     nextPhase: 'Прогресс до след. фазы',
+    resetProgress: 'Сбросить прогресс',
+    resetConfirm1: 'Вы уверены?',
+    resetConfirm2: 'Вы ТОЧНО уверены? (Все данные будут удалены)',
+    guideTitle: 'Как это работает?',
+    guideIntro: 'FreedomPath — это не резкий отказ, а осознанный путь к свободе.',
+    guideSteps: [
+      { title: 'База', text: 'Первые 3 дня мы просто наблюдаем за вашими привычками без ограничений.' },
+      { title: 'Триггеры', text: 'Осознанность — половина успеха. Мы выясним, ПОЧЕМУ вы курите.' },
+      { title: 'Снижение', text: 'Убираем самые ненужные сигареты, например «двойные» подряд.' },
+      { title: 'Правило 4', text: 'Закрепляемся на 4 сигаретах в день: Утро, Обед, Ужин, Вечер.' },
+      { title: 'Свобода', text: 'Когда вы готовы, переход с 4 на 0 проходит почти незаметно.' }
+    ],
     phaseConditions: {
       BASELINE: 'Записывайте данные 3 дня для начала анализа.',
       TRIGGER_ID: 'Укажите триггеры для 10 сигарет.',
@@ -94,13 +133,25 @@ export const TRANSLATIONS: Record<Language, any> = {
     suggestedAction: 'Acción sugerida',
     settings: 'Ajustes',
     language: 'Idioma',
+    currency: 'Moneda',
     quitPhase: 'Fase actual',
-    currency: '€',
     breathingTitle: 'Enfoca tu respiración',
     breathingSub: 'Inhala y exhala lento...',
     breathingFinished: '¡Buen trabajo! La ansiedad pasará.',
     finish: 'Finalizar',
     nextPhase: 'Progreso a la siguiente fase',
+    resetProgress: 'Reiniciar Progreso',
+    resetConfirm1: '¿Estás seguro?',
+    resetConfirm2: '¿ESTÁS SEGURO? (Se perderán todos los datos)',
+    guideTitle: 'Cómo funciona CaminoLibre',
+    guideIntro: 'CaminoLibre no se trata de dejarlo de golpe, sino de un camino guiado por datos.',
+    guideSteps: [
+      { title: 'Base', text: 'Primero observamos. No cambies nada, solo registra todo por 3 días.' },
+      { title: 'Disparadores', text: 'La conciencia es la clave. Descubrimos POR QUÉ fumas.' },
+      { title: 'Reducción', text: 'Empezamos eliminando los cigarrillos "dobles" innecesarios.' },
+      { title: 'La Regla de Cuatro', text: 'Nos estabilizamos en 4 al día: Mañana, Almuerzo, Cena, Noche.' },
+      { title: 'Libertad', text: 'Cuando estés listo, pasar de 4 a 0 es mucho más fácil.' }
+    ],
     phaseConditions: {
       BASELINE: 'Registra datos por 3 días.',
       TRIGGER_ID: 'Identifica disparadores para 10 cigarrillos.',

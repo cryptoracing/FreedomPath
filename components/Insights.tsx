@@ -50,7 +50,7 @@ export const Insights: React.FC<InsightsProps> = ({ logs, phase }) => {
         <button 
           onClick={fetchAnalysis}
           disabled={loading}
-          className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors flex items-center gap-2 text-sm font-medium"
+          className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors flex items-center gap-2 text-sm font-bold"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /> Refresh
         </button>
@@ -63,11 +63,11 @@ export const Insights: React.FC<InsightsProps> = ({ logs, phase }) => {
         </div>
       ) : analysis && (
         <>
-          <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6">
-            <div className="flex items-center gap-2 text-indigo-700 font-bold mb-4">
+          <div className="bg-purple-50 border border-purple-100 rounded-2xl p-6">
+            <div className="flex items-center gap-2 text-purple-700 font-bold mb-4">
               <Sparkles className="w-5 h-5" /> Smart Summary
             </div>
-            <p className="text-gray-700 leading-relaxed italic">"{analysis.advice}"</p>
+            <p className="text-gray-700 leading-relaxed italic font-medium">"{analysis.advice}"</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -78,11 +78,11 @@ export const Insights: React.FC<InsightsProps> = ({ logs, phase }) => {
               <div className="space-y-3">
                 {analysis.topTriggers.map(t => (
                   <div key={t.name} className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">{t.name}</span>
+                    <span className="text-sm text-gray-600 font-medium">{t.name}</span>
                     <div className="flex items-center gap-2">
                       <div className="w-24 bg-gray-100 h-2 rounded-full overflow-hidden">
                         <div 
-                          className="bg-indigo-500 h-full" 
+                          className="bg-purple-500 h-full" 
                           style={{ width: `${Math.min(100, (t.count / logs.length) * 100)}%` }} 
                         />
                       </div>
@@ -97,7 +97,7 @@ export const Insights: React.FC<InsightsProps> = ({ logs, phase }) => {
               <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-yellow-500" /> Suggested Action
               </h4>
-              <div className="bg-yellow-50 text-yellow-800 p-4 rounded-xl text-sm font-medium border border-yellow-100">
+              <div className="bg-yellow-50 text-yellow-800 p-4 rounded-xl text-sm font-bold border border-yellow-100">
                 {analysis.suggestedAction}
               </div>
             </div>
@@ -105,8 +105,8 @@ export const Insights: React.FC<InsightsProps> = ({ logs, phase }) => {
 
           {analysis.doublesCount > 0 && (
             <div className="bg-red-50 border border-red-100 rounded-2xl p-6">
-              <h4 className="font-bold text-red-700 mb-2">Watch out for 'Doubles'</h4>
-              <p className="text-sm text-red-600">
+              <h4 className="font-black text-red-700 mb-2">Watch out for 'Doubles'</h4>
+              <p className="text-sm text-red-600 font-medium">
                 You smoked {analysis.doublesCount} times within 30 minutes of a previous cigarette. 
                 Our first goal in the Reduction phase will be breaking this chain.
               </p>

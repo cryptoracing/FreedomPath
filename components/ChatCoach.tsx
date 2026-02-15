@@ -49,12 +49,12 @@ export const ChatCoach: React.FC<ChatCoachProps> = ({ logs, phase }) => {
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`flex gap-2 max-w-[85%] ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${m.role === 'user' ? 'bg-indigo-100' : 'bg-white shadow-sm'}`}>
-                {m.role === 'user' ? <User className="w-4 h-4 text-indigo-600" /> : <Bot className="w-4 h-4 text-purple-600" />}
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${m.role === 'user' ? 'bg-purple-100' : 'bg-white shadow-sm'}`}>
+                {m.role === 'user' ? <User className="w-4 h-4 text-purple-600" /> : <Bot className="w-4 h-4 text-purple-600" />}
               </div>
-              <div className={`p-4 rounded-2xl text-sm leading-relaxed ${
+              <div className={`p-4 rounded-2xl text-sm leading-relaxed font-medium ${
                 m.role === 'user' 
-                ? 'bg-indigo-600 text-white rounded-tr-none' 
+                ? 'bg-purple-600 text-white rounded-tr-none shadow-md' 
                 : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-tl-none'
               }`}>
                 {m.text}
@@ -79,12 +79,12 @@ export const ChatCoach: React.FC<ChatCoachProps> = ({ logs, phase }) => {
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Type a message..."
-          className="flex-1 bg-gray-50 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          className="flex-1 bg-gray-50 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none"
         />
         <button 
           onClick={handleSend}
           disabled={!input.trim() || isTyping}
-          className="p-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 disabled:opacity-50 transition-all shadow-md active:scale-95"
+          className="p-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 disabled:opacity-50 transition-all shadow-md active:scale-95"
         >
           <Send className="w-5 h-5" />
         </button>

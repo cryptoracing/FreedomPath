@@ -2,7 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { CigaretteLog, TriggerAnalysis, QuitPhase } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Initialize Gemini API client using the environment variable directly as required by guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const analyzeSmokingPatterns = async (
   logs: CigaretteLog[],
@@ -45,7 +46,9 @@ export const analyzeSmokingPatterns = async (
     }
   });
 
-  return JSON.parse(response.text);
+  // Accessing text property directly as it is a getter, not a method
+  const text = response.text || '{}';
+  return JSON.parse(text);
 };
 
 export const getCoachResponse = async (
@@ -65,6 +68,8 @@ export const getCoachResponse = async (
   });
 
   const lastMsg = history[history.length - 1];
+  // sendMessage takes a message parameter as per the updated SDK
   const response = await chat.sendMessage({ message: lastMsg.text });
+  // Accessing text property directly as it is a getter
   return response.text;
 };
