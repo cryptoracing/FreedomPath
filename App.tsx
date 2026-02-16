@@ -8,8 +8,7 @@ import { Insights } from './components/Insights';
 import { ChatCoach } from './components/ChatCoach';
 import { GuideView } from './components/GuideView';
 import { TRANSLATIONS, CURRENCIES } from './constants';
-// Added Brain to the imports from lucide-react to fix line 343 error
-import { Home, BarChart3, MessageCircle, Settings, Globe, DollarSign, ChevronRight, ChevronLeft, Check, BookOpen, Star, Trash2, Brain } from 'lucide-react';
+import { Home, BarChart3, MessageCircle, Settings, Globe, DollarSign, ChevronRight, ChevronLeft, Check, BookOpen, Star, Trash2, Brain, Share2, Smartphone } from 'lucide-react';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'insights' | 'coach' | 'guide' | 'settings'>('home');
@@ -134,6 +133,37 @@ const App: React.FC = () => {
     }
   };
 
+  const handleShare = async () => {
+    const t = TRANSLATIONS[language || 'ru'];
+    const currentUrl = window.location.href;
+    const isShareableUrl = currentUrl.startsWith('http');
+    const fallbackUrl = 'https://freedompath.app'; // Плейсхолдер для реального URL
+    const urlToShare = isShareableUrl ? currentUrl : fallbackUrl;
+
+    const shareData = {
+      title: t.appTitle,
+      text: t.shareText,
+      url: urlToShare,
+    };
+
+    if (navigator.share && isShareableUrl) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        console.warn('Native share failed, using clipboard fallback:', err);
+      }
+    }
+
+    // Fallback: copy to clipboard
+    try {
+      await navigator.clipboard.writeText(`${t.shareText} ${urlToShare}`);
+      alert('Ссылка скопирована в буфер обмена!');
+    } catch (clipErr) {
+      console.error('Clipboard failed:', clipErr);
+    }
+  };
+
   const handleAddCustomTrigger = (triggerName: string) => {
     if (!triggerName.trim()) return;
     setUserSettings(prev => ({
@@ -157,7 +187,6 @@ const App: React.FC = () => {
       <div className="fixed inset-0 bg-white z-[300] flex flex-col items-center justify-center p-8 animate-in fade-in duration-500 overflow-y-auto">
         <div className="max-w-md w-full min-h-full flex flex-col justify-between py-12">
           
-          {/* Step 0: Language selection (MUST be first) */}
           {onboardingStep === 0 && (
             <div className="space-y-12 animate-in slide-in-from-bottom-8">
               <div className="space-y-4 text-center">
@@ -175,7 +204,6 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Step 1: New Intro Screen (Revolutionary Way) */}
           {onboardingStep === 1 && (
             <div className="space-y-12 animate-in slide-in-from-right-8">
               <div className="space-y-6">
@@ -213,7 +241,6 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Step 2: Guide Intro */}
           {onboardingStep === 2 && (
             <div className="space-y-8 animate-in slide-in-from-right-8">
               <div className="space-y-4">
@@ -231,7 +258,6 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Steps 3-7: Phases */}
           {onboardingStep >= 3 && onboardingStep <= 7 && (
             <div className="space-y-12 animate-in slide-in-from-right-8">
                <div className="flex items-center gap-4">
@@ -257,7 +283,6 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Step 8: Final Setup (Fixing input colors) */}
           {onboardingStep === 8 && (
             <div className="space-y-12 animate-in slide-in-from-right-8">
               <div className="space-y-4">
@@ -339,6 +364,18 @@ const App: React.FC = () => {
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
             <h2 className="text-2xl font-black uppercase tracking-tight">{t.settings}</h2>
             
+            {/* Share & Install Block */}
+            <div className="grid grid-cols-2 gap-3">
+               <button onClick={handleShare} className="bg-purple-600 text-white p-6 rounded-[2rem] flex flex-col items-center justify-center gap-3 shadow-lg active:scale-95 transition-all">
+                  <Share2 className="w-8 h-8" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">{t.shareTitle}</span>
+               </button>
+               <div className="bg-white border border-gray-100 p-6 rounded-[2rem] flex flex-col items-center justify-center gap-3 shadow-sm">
+                  <Smartphone className="w-8 h-8 text-purple-600" />
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">{t.pwaTitle}</span>
+               </div>
+            </div>
+
             <section className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm space-y-6">
               <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                 <Brain className="w-3 h-3" /> Мои Триггеры

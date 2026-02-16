@@ -1,10 +1,20 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FreedomPath - Quit Smoking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>FreedomPath - Путь к Свободе</title>
+    
+    <!-- Mobile App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#9333ea">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/96/000000/no-smoking.png">
+    
+    <!-- PWA Manifest Simulation -->
+    <link rel="manifest" href="data:application/manifest+json,{'name':'FreedomPath','short_name':'FreedomPath','start_url':'.','display':'standalone','background_color':'#F8FAFC','theme_color':'#9333ea'}">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +23,13 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            overscroll-behavior-y: contain;
+        }
+        /* Custom scrollbar for a cleaner mobile look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
         }
     </style>
 <script type="importmap">

@@ -52,6 +52,10 @@ export const TRANSLATIONS: Record<Language, any> = {
     resetProgress: 'Сбросить прогресс',
     resetConfirm1: 'Вы уверены?',
     resetConfirm2: 'Вы ТОЧНО уверены? (Все данные будут удалены)',
+    shareTitle: 'Поделиться с другом',
+    shareText: 'Я бросаю курить осознанно с FreedomPath. Присоединяйся!',
+    pwaTitle: 'Установить как приложение',
+    pwaBody: 'Нажми "Поделиться" в браузере и выбери "На экран Домой"',
     guideTitle: 'Как работает FreedomPath',
     guideIntro: 'FreedomPath — это не метод "силы воли", а осознанный путь к свободе через данные.',
     guideSteps: [
