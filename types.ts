@@ -23,6 +23,7 @@ export interface UserSettings {
   costPerPack: number;
   packSize: number;
   baselinePerDay: number;
+  customTriggers: string[];
 }
 
 export interface TriggerAnalysis {

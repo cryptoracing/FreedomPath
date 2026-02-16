@@ -10,7 +10,7 @@ export const analyzeSmokingPatterns = async (
   phase: QuitPhase
 ): Promise<TriggerAnalysis> => {
   const logSummary = logs.map(l => ({
-    time: new Date(l.timestamp).toLocaleTimeString(),
+    time: new Date(l.timestamp).toLocaleTimeString('ru-RU'),
     trigger: l.trigger,
     context: l.context,
     isDouble: l.isDouble
@@ -18,9 +18,10 @@ export const analyzeSmokingPatterns = async (
 
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Analyze these smoking logs for a user in the ${phase} phase of quitting. 
-    Find the most common triggers and count instances of "double" cigarettes (smoked within 30 mins of each other).
-    Logs: ${JSON.stringify(logSummary.slice(-30))}`,
+    contents: `Проанализируй эти записи курения для пользователя на стадии "${phase}". 
+    Найди самые частые триггеры и посчитай "двойные" сигареты (выкуренные в течение 30 минут).
+    Записи: ${JSON.stringify(logSummary.slice(-30))}.
+    ОТВЕЧАЙ СТРОГО НА РУССКОМ ЯЗЫКЕ.`,
     config: {
       responseMimeType: "application/json",
       responseSchema: {
@@ -46,7 +47,6 @@ export const analyzeSmokingPatterns = async (
     }
   });
 
-  // Accessing text property directly as it is a getter, not a method
   const text = response.text || '{}';
   return JSON.parse(text);
 };
@@ -58,18 +58,16 @@ export const getCoachResponse = async (
   const chat = ai.chats.create({
     model: 'gemini-3-flash-preview',
     config: {
-      systemInstruction: `You are FreedomPath Coach, an empathetic expert in smoking cessation. 
-      The user is currently in the ${userContext.phase} phase.
-      Current stats: ${userContext.logs.length} total logs.
-      Focus on gradual reduction, harm reduction, and identifying psychological triggers.
-      Encourage the user to reach the goal of 4 cigarettes/day before quitting entirely.
-      Be supportive, never judgmental.`
+      systemInstruction: `Ты — FreedomPath Coach, эмпатичный эксперт по отказу от курения. 
+      Пользователь сейчас на стадии ${userContext.phase}.
+      Всего записей: ${userContext.logs.length}.
+      Фокусируйся на постепенном снижении вреда и выявлении психологических триггеров.
+      Твоя цель — помочь пользователю дойти до 4 сигарет в день, а потом бросить совсем.
+      ОТВЕЧАЙ СТРОГО НА РУССКОМ ЯЗЫКЕ. Будь поддерживающим, не осуждай.`
     }
   });
 
   const lastMsg = history[history.length - 1];
-  // sendMessage takes a message parameter as per the updated SDK
   const response = await chat.sendMessage({ message: lastMsg.text });
-  // Accessing text property directly as it is a getter
   return response.text;
 };

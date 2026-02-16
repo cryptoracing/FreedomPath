@@ -4,81 +4,37 @@ import { QuitPhase, Language } from './types';
 import { Activity, Target, Brain, Wind, CheckCircle } from 'lucide-react';
 
 export const CURRENCIES = [
-  { code: 'USD', symbol: '$' },
   { code: 'RUB', symbol: '₽' },
+  { code: 'USD', symbol: '$' },
   { code: 'EUR', symbol: '€' },
   { code: 'THB', symbol: '฿' },
   { code: 'GBP', symbol: '£' },
   { code: 'JPY', symbol: '¥' },
-  { code: 'CNY', symbol: '¥' },
-  { code: 'IDR', symbol: 'Rp' },
-  { code: 'TRY', symbol: '₺' },
-  { code: 'KRW', symbol: '₩' },
-  { code: 'INR', symbol: '₹' },
-  { code: 'BRL', symbol: 'R$' }
+  { code: 'CNY', symbol: '¥' }
 ];
 
 export const TRANSLATIONS: Record<Language, any> = {
-  en: {
-    appTitle: 'FreedomPath',
-    todayCount: "Today's Cigarettes",
-    doubles: 'Doubles (Urgent)',
-    moneySaved: 'Money Saved',
-    weeklyTrend: 'Weekly Trend',
-    recentSessions: 'Recent Sessions',
-    noLogs: 'No logs yet today. Stay strong!',
-    logCigarette: 'Log Cigarette',
-    craveButton: 'Help! Craving',
-    confirmLog: 'Confirm Log',
-    triggerQuestion: 'What triggered this?',
-    contextPlaceholder: 'e.g. Busy morning, felt rushed',
-    habitInsights: 'Habit Insights',
-    refresh: 'Refresh',
-    smartSummary: 'Smart Summary',
-    topTriggers: 'Top Triggers',
-    suggestedAction: 'Suggested Action',
-    settings: 'Settings',
-    language: 'Language',
-    currency: 'Currency',
-    quitPhase: 'Current Phase',
-    breathingTitle: 'Focus on Breath',
-    breathingSub: 'Inhale and exhale slowly...',
-    breathingFinished: 'Great job! The craving will pass.',
-    finish: 'Finish',
-    nextPhase: 'Progress to next phase',
-    resetProgress: 'Reset Progress',
-    resetConfirm1: 'Are you sure?',
-    resetConfirm2: 'Are you REALLY sure? (All logs will be lost)',
-    guideTitle: 'How FreedomPath Works',
-    guideIntro: 'FreedomPath is not about "cold turkey" quitting. It is a data-driven path to freedom.',
-    guideSteps: [
-      { title: 'Track Baseline', text: 'First, we observe. Don\'t change habits, just log everything for 3 days.' },
-      { title: 'Identify Triggers', text: 'Awareness is 50% of the battle. We find out WHY you reach for a cigarette.' },
-      { title: 'Active Reduction', text: 'We start cutting the "easy" ones first, like doubles smoked in a row.' },
-      { title: 'The Four Rule', text: 'We stabilize at 4 cigarettes a day: Morning, Lunch, Dinner, Night.' },
-      { title: 'Freedom', text: 'When you are ready, you jump from 4 to 0. You have already won.' }
-    ],
-    phaseConditions: {
-      BASELINE: 'Log data for 3 days to start analysis.',
-      TRIGGER_ID: 'Identify triggers for at least 10 cigarettes.',
-      REDUCTION: 'Reduce average count below your baseline.',
-      STABILIZE_4: 'Stay at 4 or fewer for 3 days.',
-      FREEDOM: 'You are smoke free! Keep it up.'
-    }
-  },
+  en: {},
+  es: {},
   ru: {
-    appTitle: 'Путь к Свободе',
+    appTitle: 'FreedomPath',
+    welcomeTitle: 'Революционный способ бросить курить',
+    welcomeSubtitle: 'Или уменьшить количество сигарет в день без тяжелой работы',
+    welcomeDescription: 'FreedomPath — это не метод "силы воли", а осознанный путь к свободе через данные.',
+    welcomeQuote: '"FreedomPath — это не про запреты, а про контроль над собой."',
     todayCount: 'Сигарет сегодня',
     doubles: 'Двойные (Срочно)',
     moneySaved: 'Экономия',
     weeklyTrend: 'График за неделю',
     recentSessions: 'Последние записи',
     noLogs: 'Сегодня еще нет записей. Держись!',
-    logCigarette: 'Записать',
+    logCigarette: 'Записать сигарету',
     craveButton: 'Тяга! Помощь',
-    confirmLog: 'Подтвердить',
+    confirmLog: 'Подтвердить запись',
     triggerQuestion: 'Что вызвало тягу?',
-    contextPlaceholder: 'например: Стресс на работе',
+    addTrigger: '+ Свой триггер',
+    saveTrigger: 'Сохранить',
+    contextPlaceholder: 'например: Стресс на работе, скука...',
     habitInsights: 'Анализ привычек',
     refresh: 'Обновить',
     smartSummary: 'ИИ Анализ',
@@ -96,119 +52,94 @@ export const TRANSLATIONS: Record<Language, any> = {
     resetProgress: 'Сбросить прогресс',
     resetConfirm1: 'Вы уверены?',
     resetConfirm2: 'Вы ТОЧНО уверены? (Все данные будут удалены)',
-    guideTitle: 'Как это работает?',
-    guideIntro: 'FreedomPath — это не резкий отказ, а осознанный путь к свободе.',
+    guideTitle: 'Как работает FreedomPath',
+    guideIntro: 'FreedomPath — это не метод "силы воли", а осознанный путь к свободе через данные.',
     guideSteps: [
-      { title: 'База', text: 'Первые 3 дня мы просто наблюдаем за вашими привычками без ограничений.' },
-      { title: 'Триггеры', text: 'Осознанность — половина успеха. Мы выясним, ПОЧЕМУ вы курите.' },
-      { title: 'Снижение', text: 'Убираем самые ненужные сигареты, например «двойные» подряд.' },
-      { title: 'Правило 4', text: 'Закрепляемся на 4 сигаретах в день: Утро, Обед, Ужин, Вечер.' },
-      { title: 'Свобода', text: 'Когда вы готовы, переход с 4 на 0 проходит почти незаметно.' }
+      { 
+        title: 'Сбор данных (Baseline)', 
+        text: 'Первые 3-7 дней мы просто наблюдаем. Курите как обычно, но честно записывайте каждую сигарету. Это поможет ИИ понять ваш график.' 
+      },
+      { 
+        title: 'Поиск триггеров', 
+        text: 'Осознанность — половина успеха. Мы выясним, какие ситуации (кофе, стресс, скука) заставляют вас тянуться за пачкой.' 
+      },
+      { 
+        title: 'Активное снижение', 
+        text: 'Убираем "лишние" сигареты. Начинаем с двойных сигарет (вторая подряд) и постепенно снижаем общее количество.' 
+      },
+      { 
+        title: 'Правило Четырех', 
+        text: 'Первая сигарета только через 6 часов после пробуждения. Никакого курения утром. Минимум для организма.' 
+      },
+      { 
+        title: 'Полная Свобода', 
+        text: 'Снизив дозу до минимума, вы сами решаете — отказаться полностью или оставить осознанный минимум под полным контролем.' 
+      }
     ],
     phaseConditions: {
       BASELINE: 'Записывайте данные 3 дня для начала анализа.',
       TRIGGER_ID: 'Укажите триггеры для 10 сигарет.',
       REDUCTION: 'Снизьте среднее число ниже базового.',
       STABILIZE_4: 'Держитесь на 4 или меньше 3 дня.',
-      FREEDOM: 'Вы свободны от курения! Так держать.'
-    }
-  },
-  es: {
-    appTitle: 'CaminoLibre',
-    todayCount: 'Cigarrillos hoy',
-    doubles: 'Dobles (Urgente)',
-    moneySaved: 'Ahorros',
-    weeklyTrend: 'Tendencia semanal',
-    recentSessions: 'Sesiones recientes',
-    noLogs: 'Sin registros hoy. ¡Mantente fuerte!',
-    logCigarette: 'Registrar',
-    craveButton: '¡Ayuda! Ansiedad',
-    confirmLog: 'Confirmar',
-    triggerQuestion: '¿Qué lo provocó?',
-    contextPlaceholder: 'ej. Mañana ocupada, apurado',
-    habitInsights: 'Análisis',
-    refresh: 'Actualizar',
-    smartSummary: 'Resumen IA',
-    topTriggers: 'Principales disparadores',
-    suggestedAction: 'Acción sugerida',
-    settings: 'Ajustes',
-    language: 'Idioma',
-    currency: 'Moneda',
-    quitPhase: 'Fase actual',
-    breathingTitle: 'Enfoca tu respiración',
-    breathingSub: 'Inhala y exhala lento...',
-    breathingFinished: '¡Buen trabajo! La ansiedad pasará.',
-    finish: 'Finalizar',
-    nextPhase: 'Progreso a la siguiente fase',
-    resetProgress: 'Reiniciar Progreso',
-    resetConfirm1: '¿Estás seguro?',
-    resetConfirm2: '¿ESTÁS SEGURO? (Se perderán todos los datos)',
-    guideTitle: 'Cómo funciona CaminoLibre',
-    guideIntro: 'CaminoLibre no se trata de dejarlo de golpe, sino de un camino guiado por datos.',
-    guideSteps: [
-      { title: 'Base', text: 'Primero observamos. No cambies nada, solo registra todo por 3 días.' },
-      { title: 'Disparadores', text: 'La conciencia es la clave. Descubrimos POR QUÉ fumas.' },
-      { title: 'Reducción', text: 'Empezamos eliminando los cigarrillos "dobles" innecesarios.' },
-      { title: 'La Regla de Cuatro', text: 'Nos estabilizamos en 4 al día: Mañana, Almuerzo, Cena, Noche.' },
-      { title: 'Libertad', text: 'Cuando estés listo, pasar de 4 a 0 es mucho más fácil.' }
-    ],
-    phaseConditions: {
-      BASELINE: 'Registra datos por 3 días.',
-      TRIGGER_ID: 'Identifica disparadores para 10 cigarrillos.',
-      REDUCTION: 'Reduce el promedio por debajo de tu base.',
-      STABILIZE_4: 'Mantente en 4 o menos por 3 días.',
-      FREEDOM: '¡Eres libre de humo! Continúa así.'
+      FREEDOM: 'Вы контролируете ситуацию! Выбирайте свой путь.'
+    },
+    nav: {
+      track: 'Трекер',
+      insights: 'Анализ',
+      coach: 'Коуч',
+      guide: 'Инфо',
+      settings: 'Настройки'
     }
   }
 };
 
 export const PHASE_METADATA = {
   [QuitPhase.BASELINE]: {
-    title: { en: 'Baseline Tracking', ru: 'Сбор данных', es: 'Seguimiento Base' },
+    title: { ru: 'Сбор данных', en: 'Baseline', es: 'Base' },
     description: { 
-      en: 'We are learning your habits. Just log normally.', 
-      ru: 'Изучаем ваши привычки. Просто записывайте как обычно.', 
-      es: 'Aprendiendo tus hábitos. Registra normalmente.' 
+      ru: 'Изучаем ваши привычки. Просто записывайте сигареты как обычно.', 
+      en: 'Learning habits.', 
+      es: 'Aprendiendo.' 
     },
     icon: <Activity className="w-5 h-5" />,
     color: 'blue'
   },
   [QuitPhase.TRIGGER_ID]: {
-    title: { en: 'Trigger Discovery', ru: 'Поиск триггеров', es: 'Descubrimiento' },
+    title: { ru: 'Поиск триггеров', en: 'Triggers', es: 'Disparadores' },
     description: { 
-      en: 'Focus on WHY you smoke. Awareness is key.', 
       ru: 'Сосредоточьтесь на ПРИЧИНАХ. Осознанность — это ключ.', 
-      es: 'Enfócate en POR QUÉ fumas. La conciencia es clave.' 
+      en: 'Focus on WHY.', 
+      es: 'Enfócate en POR QUÉ.' 
     },
     icon: <Brain className="w-5 h-5" />,
     color: 'purple'
   },
   [QuitPhase.REDUCTION]: {
-    title: { en: 'Active Reduction', ru: 'Активное снижение', es: 'Reducción Activa' },
+    title: { ru: 'Активное снижение', en: 'Reduction', es: 'Reducción' },
     description: { 
-      en: 'Time to cut back. Aim for 10% less each day.', 
       ru: 'Пора снижать. Цель — на 10% меньше каждый день.', 
-      es: 'Hora de reducir. Apunta a un 10% menos cada día.' 
+      en: 'Time to cut back.', 
+      es: 'Hora de reducir.' 
     },
     icon: <Target className="w-5 h-5" />,
     color: 'orange'
   },
   [QuitPhase.STABILIZE_4]: {
-    title: { en: 'The Final Four', ru: 'Последние четыре', es: 'Los Cuatro Finales' },
+    title: { ru: 'Правило четырех', en: 'Final Four', es: 'Cuatro Finales' },
     description: { 
-      en: 'One for morning, lunch, dinner, and night.', 
-      ru: 'По одной на утро, обед, ужин и вечер.', 
-      es: 'Uno para mañana, almuerzo, cena y noche.' 
+      ru: 'Утро без сигарет. Первая — спустя 6 часов после пробуждения.', 
+      en: 'Morning free. First one 6h after wake up.', 
+      es: 'Mañana libre. Primero 6h después de despertar.' 
     },
     icon: <Wind className="w-5 h-5" />,
     color: 'teal'
   },
   [QuitPhase.FREEDOM]: {
-    title: { en: 'Pure Freedom', ru: 'Чистая свобода', es: 'Libertad Pura' },
+    title: { ru: 'Полная свобода', en: 'Freedom', es: 'Libertad' },
     description: { 
-      en: 'You are no longer a smoker. Protect this peace.', 
-      ru: 'Вы больше не курильщик. Берегите этот покой.', 
-      es: 'Ya no eres fumador. Protege esta paz.' 
+      ru: 'Привычка побеждена. Вы сами решаете, оставить ли минимум или бросить совсем.', 
+      en: 'Pure Freedom.', 
+      es: 'Libertad Pura.' 
     },
     icon: <CheckCircle className="w-5 h-5" />,
     color: 'green'
@@ -216,7 +147,7 @@ export const PHASE_METADATA = {
 };
 
 export const TRIGGERS_TRANS: Record<Language, string[]> = {
-  en: ['Stress', 'Coffee', 'After Meal', 'Boredom', 'Alcohol', 'Socializing', 'Driving', 'Morning'],
-  ru: ['Стресс', 'Кофе', 'После еды', 'Скука', 'Алкоголь', 'Общение', 'За рулем', 'Утро'],
-  es: ['Estrés', 'Café', 'Después de comer', 'Aburrimiento', 'Alcohol', 'Socializar', 'Conducir', 'Mañana']
+  en: [],
+  es: [],
+  ru: ['Стресс', 'Кофе', 'После еды', 'Скука', 'Алкоголь', 'Общение', 'За рулем', 'Утро', 'Работа', 'Прогулка']
 };
